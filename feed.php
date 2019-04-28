@@ -7,8 +7,8 @@
   </head>
   <body>
   	<div class="wrapper">
-      <form action="index.php" method="POST">
-      	<input type="text" name="post_text" placeholder="Dime lo que piensas">
+      <form action="feed.php" method="POST">
+      	<input id="a_text" type="text" name="post_text" size="60" maxlength="140" align="top" placeholder="Dime lo que piensas">
       	<br>
       	<button type="button" onclick="alert('Publicado, genial!!!')">Publicar</button>
     </div> 		
