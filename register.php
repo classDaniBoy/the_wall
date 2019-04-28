@@ -35,7 +35,7 @@
 
 			<div id="second">
 
-				<form action="register.php" method="POST">
+				<form enctype="multipart/form-data" action="register.php" method="POST">
 					<input type="text" name="reg_fname" placeholder="Nombre" value="" required>
 					<br>
 					<input type="text" name="reg_lname" placeholder="Apellido" value="" required>
@@ -47,6 +47,11 @@
 					<input type="password" name="reg_password" placeholder="Password" required>
 					<br>
 					<input type="password" name="reg_password2" placeholder="Confirm Password" required>
+					<br>
+					<input type="password" name="reg_password2" placeholder="Confirm Password" required>
+					<br>
+					<p>Seleccionar imagen de perfil</p>
+					<input type="file" name="profile_pic" required>
 					<br>
 					<input type="submit" name="register_button" value="Registrarse">
 					<br>

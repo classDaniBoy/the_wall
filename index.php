@@ -1,13 +1,6 @@
 <?php  
-require 'config/config.php';
-
+    include("includes/header.php");
 ?>
-
-<html>
-<head>
-	<title>Welcome to Swirlfeed</title>
-</head>
-<body>
-	Hello Reece!!!!!
+    Hello Reece!!!!!
 </body>
 </html>
