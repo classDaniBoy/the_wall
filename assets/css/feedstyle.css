@@ -16,5 +16,10 @@ body{
 	position: relative;
 	margin-right: auto;
 	margin-left: auto;
-	top: 600px;
+	top: 550px;
+}
+
+#a_text{
+	height: 80px;
+	
 }
