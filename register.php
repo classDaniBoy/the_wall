@@ -1,9 +1,11 @@
 <html>
 <head>
 	<title>Bienvenidos a The Wall!</title>
+
 	<link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="assets/js/register.js"></script>
+	<link rel="stylesheet" type="text/css" href="assets/css/footer_style.css">
 </head>
 <body>
 
@@ -60,9 +62,7 @@
 			</div>
 
 		</div>
-
 	</div>
-
-
-</body>
-</html>
+<?php 
+    include("includes/footer.php");
+ ?>

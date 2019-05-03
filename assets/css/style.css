@@ -99,6 +99,7 @@ nav a:hover {
 }
 
 .main_column {
+	padding: 300px;
 	float:right;
 	width: 70%;
 	z-index: -1;
@@ -230,7 +231,7 @@ textarea:focus {
 	width: 17%;
 	max-width: 240px;
 	min-width: 130px;
-	height: 100%;
+	height: 81%;
 	float: left;
 	position: relative;
 	background-color: #37B0E9;
@@ -287,5 +288,6 @@ textarea:focus {
 	color: #fff;
 }
 
-
-
+.btn.register {
+	margin-top: 5px;
+}
