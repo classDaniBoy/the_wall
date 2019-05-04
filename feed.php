@@ -14,10 +14,10 @@
  <div class="wrapper">
     
   <div class="user_details column">
-    <a href="profileself.php"> <img src="img/userimage.jpg"></a>
+    <a href="profile_self.php"> <img src="img/userimage.jpg"></a>
 
     <div class="user_details_left_right">
-      <a href="profileself.php">
+      <a href="profile_self.php">
       <p>Cesar Borelli</p>
       <p>Posts:235</p>
       <p>Likes:670</p>

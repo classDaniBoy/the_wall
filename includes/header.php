@@ -22,14 +22,14 @@
             <i class="fas fa-search" aria-hidden="true"></i>
           </form>
 		<nav>
-			<a href="#">
+			<a href="">
 				Lorem Ipsum
 			</a>
 
 			<a href="#">
 				<i class="fas fa-home fa-lg"></i>
 			</a>
-			<a href="#">
+			<a href="settings.php">
 				<i class="fas fa-user-cog fa-lg"></i>
 			</a>
 			<a href="#">

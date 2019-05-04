@@ -1,0 +1,52 @@
+
+.column{
+	background-color: #fff;
+	padding: 10px;
+	border:1px solid #D3D3D3;
+	border-radius: 5px;
+	box-shadow: 2px 2px 1px #D3D3D3;
+	z-index: -1;
+	margin-top: 45px;
+	width: 50%;
+	position: absolute;
+
+}
+
+#settings_in{
+	margin: 90px 5px 10px 0;
+}
+
+.profile_img{
+	height: 55px;
+	margin: 1px 12px 0 2px;
+	float: left;
+}
+
+.profile_img img{
+	height: 55px;
+	margin: 1px 12px 0 2px;
+	float: left;
+}
+
+#settings_input{
+	border:1px solid:#ccc;
+	height: 20px;
+	padding: 4px 6px;
+	margin-bottom: 8px;
+	border-radius: 4px;
+	font-size: 14px;
+	line-height: 20px;
+
+}
+
+#settings_submit{
+	background-color: #3498db;
+	border: 1px solid #3498db;
+	border-radius: 3px;
+	margin: 5px 0 10px 0;
+	padding: 5px 10px 5px 10px;
+	color: #2C6C96;
+	text-shadow: #73B6E2 0.5px 0.5px 0px;
+	font-family: 'Bellota-BoldItalic', sans-serif;
+	font-size: 100%;
+}
