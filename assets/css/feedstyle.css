@@ -1,6 +1,4 @@
-body{
-	background-image: url("../assets/images/backgrouds/desktop.jpg");
-}
+
 
 .column{
 	background-color: #fff;
@@ -52,8 +50,41 @@ body{
 
 .status_post{
 	width: 100%;
+	font-size: 15px;
 	float: right;
 	z-index: -1;
-	min-height: 50px;
+	min-height: 75px;
 }
 
+.status_post_profile_pic{
+
+	float: left;
+	margin-right: 7px;
+}
+
+.cant_likes{
+	float: right; 
+
+}
+
+.status_post form{
+	border: 0px;
+	height: 17px;
+	width: 120px;
+}
+
+.comment_like{
+	background-color: transparent;
+	border:none;
+	font-size: 14px;
+	color: #3498db;
+	padding: 0;
+	height: auto;
+	width: auto;
+	margin: 0;
+}
+
+.like_value{
+	display: inline;
+	font-size: 14px;
+}
