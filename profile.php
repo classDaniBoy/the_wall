@@ -71,12 +71,6 @@
                     Vestibulum efficitur erat sit amet tellus ultricies, eu imperdiet nisl fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus.
                 </div>
             </div>
-            <div class="row">
-                <div class="col-sm-12 strip">
-                    <img class="comment" src="assets/images/profile_pics/defaults/head_emerald.png" alt="profile image" />
-                    Vestibulum efficitur erat sit amet tellus ultricies, eu imperdiet nisl fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus.
-                </div>
-            </div>
         </div>
 </div>
 <?php 

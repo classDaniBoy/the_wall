@@ -35,9 +35,10 @@
 			<a href="#">
 				<i class="far fa-bell fa-lg"></i>
 			</a>
-			<a href="#">
+			<a href="register.php">
 				<i class="fas fa-sign-out-alt fa-lg"></i>
 			</a>
 		</nav>
 	</div>
+
 
