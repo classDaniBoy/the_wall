@@ -34,3 +34,12 @@ img.comment{
     max-width:45px;
     max-height:45px;
 }
+.post_self{
+  width: 75%;
+  float: left;
+
+}
+
+.container_self{
+  margin-top: 130px;
+}
