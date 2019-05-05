@@ -26,7 +26,8 @@
   </div>
 
   <div class="main_column column">
-    <form class="post_form" action="feed.php" method="POST">
+    <form class="post_form" action="feed.php" method="POST" enctype="multipart/form-data">
+      <input type="file" name="upload_img" id="fileToUpload">
       <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
       <input type="submit" name="post" id="post_button" value="Publicar">
       <hr>

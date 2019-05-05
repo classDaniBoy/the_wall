@@ -26,6 +26,7 @@
 	<form action="settings.php" method="POST" id="settings_in">
 		Nombre:<input type="text" name="nombre" placeholder="Inserte nuevo nombre" id="settings_input"><br>
 		Apellido:<input type="text" name="apellido" placeholder="Inserte nuevo apellido"id="settings_input"><br>
+		Usuario:<input type="text" name="usuario" placeholder="Inserte un nuevo usuario" id="settings_input"><br>
 		Email:<input type="text" name="email" placeholder="Inserte nuevo email"id="settings_input"><br>
 		<input type="submit" name="listo" id="settings_submit" value="Listo"><br>
 	</form>
