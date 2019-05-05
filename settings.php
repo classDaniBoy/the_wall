@@ -117,7 +117,7 @@
 	            document.userPasswordForm.new_pass2.focus() ;
 	            return false;
 	        }
-	        alert('Your new password was changed succesfully'):
+	        alert('Your new password was changed succesfully');
 	        return true;
       	}
 	</script>

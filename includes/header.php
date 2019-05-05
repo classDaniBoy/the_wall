@@ -17,23 +17,20 @@
 			<a href="index.php"> The Wall</a>
 
 		</div>
-		<form class="form-inline col-md-6 mb-4" >
+		<form action="profile.php" class="form-inline col-md-6 mb-4" >
             <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
             <i class="fas fa-search" aria-hidden="true"></i>
           </form>
 		<nav>
 			<a href="">
-				Lorem Ipsum
+				User name
 			</a>
 
-			<a href="#">
+			<a href="index.php">
 				<i class="fas fa-home fa-lg"></i>
 			</a>
 			<a href="settings.php">
 				<i class="fas fa-user-cog fa-lg"></i>
-			</a>
-			<a href="#">
-				<i class="far fa-bell fa-lg"></i>
 			</a>
 			<a href="register.php">
 				<i class="fas fa-sign-out-alt fa-lg"></i>
