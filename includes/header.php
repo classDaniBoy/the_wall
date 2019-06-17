@@ -32,7 +32,7 @@
 			<a href="settings.php">
 				<i class="fas fa-user-cog fa-lg"></i>
 			</a>
-			<a href="register.php">
+			<a href="index.php">
 				<i class="fas fa-sign-out-alt fa-lg"></i>
 			</a>
 		</nav>

@@ -1,203 +1,171 @@
+<html>
+<head>
+  <title>Bienvenidos a The Wall!</title>
+
+  <link rel="stylesheet" type="text/css" href="assets/css/register_style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+  <script src="assets/js/register.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/css/footer_style.css">
+</head>
+<body>
+
+  <div class="wrapper">
+
+    <div class="login_box">
+
+      <div class="login_header">
+        <h1>The Wall!</h1>
+        Ingresá o registrate!
+      </div>
+      <br>
+      <div id="first">
+
+        <form name="logForm" action="feed.php" method="POST" onsubmit = "return log_validate();">
+          <input type="email" name="log_email" placeholder="Email" value="" required>
+          <br>
+
+          <input type="password" name="log_password" placeholder="Contraseña">
+          <br>
+
+          <input type="submit" name="login_button" value="Ingresar">
+          <br>
+          <a href="#" id="signup" class="signup">No tenés una cuenta? Registrate!</a>
+
+        </form>
+
+      </div>
+
+      <div id="second">
+
+        <form enctype="multipart/form-data" name="regForm" action="feed.php" onsubmit = "return reg_validate();" method="POST">
+          <input type="text" name="reg_fname" placeholder="Nombre" value="" required>
+          <br>
+          <input type="text" name="reg_lname" placeholder="Apellido" value="" required>
+          <br>
+          <input type="email" name="reg_email" placeholder="Email" value="" required>
+          <br>
+          <input type="email" name="reg_email2" placeholder="Confirm Email" value="" required>
+          <br>
+          <input type="password" name="reg_password" placeholder="Password" required>
+          <br>
+          <input type="password" name="reg_password2" placeholder="Confirm Password" required>
+          <br>
+          <p>Seleccionar imagen de perfil</p>
+          <input type="file" name="profile_pic" >
+          <br>
+          <input type="submit" name="register_button" value="Registrarse">
+          <br>
+          <a href="#" id="signin" class="signin">Ya tenés una cuenta? Ingresá acá!</a>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <script type = "text/javascript">
+      function log_validate() {
+      var email = document.logForm.log_email.value;
+      var email_re = /(\w+\@\w+\.\w+$)$/;
+        var email_val = email_re.test(email);      
+      
+      var pass = document.logForm.log_password.value;
+      var pass_re = /(\w+)$/;
+        var pass_val = pass_re.test(pass);      
+          
+          if(email_val === false) {
+              alert( "Please provide a valid email adress" );
+              document.logForm.log_email.focus() ;
+              return false;
+           }
+           console.log(pass);
+           console.log(pass_re);
+           console.log(pass_val);
+          if( pass_val === false) {
+              alert( "Please provide a valid password!" );
+              document.logForm.log_password.focus() ;
+              return false;
+          }
+          return true;
+        }
+
+        function reg_validate() {
+      var email = document.regForm.reg_email.value;
+      var email_re = /(\w+\@\w+\.\w+$)$/;
+        var email_val = email_re.test(email);   
+
+        var email2 = document.regForm.reg_email2.value;
+      var email_re2 = /(\w+\@\w+\.\w+$)$/;
+        var email_val2 = email_re2.test(email2);      
+      
+      var fname = document.regForm.reg_fname.value;
+      var fname_re = /(\w+)$/;
+        var fname_val = fname_re.test(fname);
+
+        var lname = document.regForm.reg_lname.value;
+      var lname_re = /(\w+)$/;
+        var lname_val = lname_re.test(lname);      
+
+      var pass = document.regForm.reg_password.value;
+      var pass_re = /(\w+)$/;
+        var pass_val = pass_re.test(pass); 
+
+        var pass2 = document.regForm.reg_password2.value;
+      var pass_re2 = /(\w+)$/;
+        var pass_val2 = pass_re2.test(pass2);      
+          
+          if (pass2 !== pass) {
+            alert( "Passwords don't match" );
+              document.regForm.reg_password.focus() ;
+              return false;
+          }
+          if (email !== email2) {
+            alert( "Email adresses don't match" );
+              document.regForm.reg_email.focus() ;
+              return false;
+          }
+          if(email_val === false) {
+              alert( "Please provide a valid email adress" );
+              document.regForm.reg_email.focus() ;
+              return false;
+           }
+           if(email_val2 === false) {
+              alert( "Please provide a valid email adress" );
+              document.regForm.reg_email2.focus() ;
+              return false;
+           }
+           if(fname_val === false) {
+              alert( "Name is a mandatory field" );
+              document.regForm.reg_fname.focus() ;
+              return false;
+           }
+           if(lname_val === false) {
+              alert( "Last Name is a mandatory field" );
+              document.regForm.reg_lname.focus() ;
+              return false;
+           }
+           if(pass_val === false) {
+              alert( "Password is a mandatory field" );
+              document.regForm.reg_password.focus() ;
+              return false;
+           }
+           if(pass_val2 === false) {
+              alert( "Password is a mandatory field" );
+              document.regForm.reg_password2.focus() ;
+              return false;
+           }
+           console.log(pass);
+           console.log(pass_re);
+           console.log(pass_val);
+          if( pass_val === false) {
+              alert( "Please provide a valid password!" );
+              document.regForm.reg_password.focus() ;
+              return false;
+          }
+          return true;
+        }
+
+</script>
 <?php 
-    include("includes/header.php");
+    include("includes/footer.php");
  ?>
-
- <link rel="stylesheet" type="text/css" href="assets/css/feedstyle.css">
-
- <style type="text/css">
-   body{
-    background-image: url("assets/images/backgrounds/desktop.jpg");
-   }
-  </style>
-
-
- <div class="wrapper">
-    
-  <div class="user_details column">
-    <a href="profile_self.php"> <img src="img/userimage.jpg"></a>
-
-    <div class="user_details_left_right">
-      <a href="profile_self.php">
-      <p>Cesar Borelli</p>
-      <p>Posts:235</p>
-      <p>Likes:670</p>
-      </a>
-    </div>
-  </div>
-
-  <div class="main_column column">
-    <form class="post_form" action="feed.php" method="POST" enctype="multipart/form-data">
-      <input type="file" name="upload_img" id="fileToUpload">
-      <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
-      <input type="submit" name="post" id="post_button" value="Publicar">
-      <hr>
-    </form>
-
-  </div>
-
-  <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-      <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>25 Likes</p>
-        </div>
-      </form>
-    </div>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Donec cursus pharetra orci, vel venenatis sapien lobortis et.</p>
-    </div>
-      <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>47 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Phasellus lobortis pellentesque urna vel tincidunt. Curabitur dictum lorem vel cursus eleifend.</p>
-    </div>
-     <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>1 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Ut quis ipsum eu ligula rhoncus porta in ac felis.</p>
-    </div>
-     <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>225 Likes</p>
-        </div>
-      </form>
-    </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Vestibulum efficitur erat sit amet tellus ultricies, eu imperdiet nisl fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus.</p>
-    </div>
-       <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>3 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-    </div>
-      <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>0 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-    </div>
-    <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>4 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-    </div>
-    <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>12 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-    </div>
-    <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>5 Likes</p>
-        </div>
-      </form>
-  </div>
-
-    <div class="status_post column">
-    <div class="status_post_profile_pic">
-      <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
-    </div>
-    <div class="posted_by">
-      <a href="profile.php">Lorem ipsum</a>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.</p>
-    </div>
-   <form class="likear" action="feed.php" method="POST">
-        <input type="submit" class="comment_like" name=like_button value="Me gusta">
-        <div class="like_value">
-          <p>2 Likes</p>
-        </div>
-      </form>
-  </div>
-
-  </div>
-
-</body>
-
-</html>
-
+(\w+\@\w+\.\w+$)
