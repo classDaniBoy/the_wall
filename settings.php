@@ -2,6 +2,8 @@
 
 	include ("includes/header.php");
 	//include("includes/settings_handler.php");
+  $usersql = "SELECT * FROM usuarios WHERE id = 1";
+  $user = $mysqli->query($usersql)->fetch_assoc();
 ?>
 <link rel="stylesheet" type="text/css" href="assets/css/settings_style.css">
 <style type="text/css">

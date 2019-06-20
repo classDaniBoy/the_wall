@@ -1,5 +1,9 @@
 <?php 
 	include("includes/header.php");
+  $usersql = "SELECT * FROM usuarios WHERE id = 1";
+  $user = $mysqli->query($usersql)->fetch_assoc();
+  $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = 1";
+  $messages = $mysqli->query($messagessql);
  ?>
 	<link rel="stylesheet" type="text/css" href="assets/css/profile_style.css">
   <style type="text/css">
@@ -14,8 +18,8 @@
  		<img src="img/userimage.jpg">
 
  		<div class="profile_info">
-      <p>Cesar Borelli</p>
-      <p>Usuario:Bore1991</p>
+      <p><?php echo $user['nombre'] ?></p>
+      <p><?php echo $user['nombreusuario'] ?></p>
  			<p>Posts: 235</p>
  			<p>Likes: 670</p>
  			<p>Friends: 50</p>
@@ -38,60 +42,18 @@
     <br>
 
 		<div class="container_self column">
+         <?php foreach ($messages as $key => $message): ?>
   			<div class="row">
     			<div class="col-sm-12 strip">
+              <?php echo $user['nombre'] ?><br>
       				<img class="comment" src="img/userimage.jpg" alt="profile image" />
-      				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam tempor nisl in mi sodales, in vestibulum arcu laoreet.<br>
+      				<?php echo $message['texto'] ?><br>
               <a href="profile_self.php">
                 <button type="button" class="btn register btn-primary">Eliminar</button>
               </a>
     			</div>
   			</div>
-  			<div class="row">
-    			<div class="col-sm-12 strip">
-      				<img class="comment" src="img/userimage.jpg" alt="profile image" />
-		     		Donec cursus pharetra orci, vel venenatis sapien lobortis et.<br>
-              <a href="profile_self.php">
-                <button type="button" class="btn register btn-primary">Eliminar</button>
-              </a>
-    			</div>
-  			</div>
-  			<div class="row">
-				<div class="col-sm-12 strip">
-					<img class="comment" src="img/userimage.jpg" alt="profile image" />
-					Phasellus lobortis pellentesque urna vel tincidunt. Curabitur dictum lorem vel cursus eleifend.<br>
-            <a href="profile_self.php">
-             <button type="button" class="btn register btn-primary">Eliminar</button>
-            </a>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12 strip">
-					<img class="comment" src="img/userimage.jpg" alt="profile image" />
-					Ut quis ipsum eu ligula rhoncus porta in ac felis.<br>
-           <a href="profile_self.php">
-             <button type="button" class="btn register btn-primary">Eliminar</button>
-          </a>
-				</div>
-			</div>
-            <div class="row">
-                <div class="col-sm-12 strip">
-                    <img class="comment" src="img/userimage.jpg" alt="profile image" />
-                    Vestibulum efficitur erat sit amet tellus ultricies, eu imperdiet nisl fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus.<br>
-                    <a href="profile_self.php">
-                      <button type="button" class="btn register btn-primary">Eliminar</button>
-                    </a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 strip">
-                    <img class="comment" src="img/userimage.jpg" alt="profile image" />
-                    Vestibulum efficitur erat sit amet tellus ultricies, eu imperdiet nisl fringilla. Interdum et malesuada fames ac ante ipsum primis in faucibus.<br>
-                    <a href="profile_self.php">
-                      <button type="button" class="btn register btn-primary">Eliminar</button>
-                    </a>
-                </div>
-            </div>
+        <?php endforeach; ?> 
         </div>
 <?php 
     include("includes/footer.php");

@@ -14,17 +14,6 @@
 <body>
 	<?php 
 		include 'BD.php';
-		$sql = "SELECT * FROM usuarios";
-		$result = $mysqli->query($sql);
-
-		if ($result->num_rows > 0) {
-		    // output data of each row
-		    while($row = $result->fetch_assoc()) {
-		        echo "id: " . $row["id"]. " - Name: " . $row["nombre"]. " " . $row["apellido"]. "<br>";
-		    }
-		} else {
-		    echo "0 results";
-	}
 	 ?>
 	<div class="top_bar" >
 		<div class="logo">

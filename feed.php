@@ -1,5 +1,8 @@
 <?php 
     include("includes/header.php");
+    include("includes/header.php");
+  $usersql = "SELECT * FROM usuarios WHERE id = 1";
+  $user = $mysqli->query($usersql)->fetch_assoc();
  ?>
 
  <link rel="stylesheet" type="text/css" href="assets/css/feedstyle.css">
@@ -18,7 +21,7 @@
 
     <div class="user_details_left_right">
       <a href="profile_self.php">
-      <p>Cesar Borelli</p>
+      <p><?php echo $user['nombre'] . " " . $user['apellido'] ?> </p>
       <p>Posts:235</p>
       <p>Likes:670</p>
       </a>
