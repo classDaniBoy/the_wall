@@ -28,10 +28,10 @@
   </div>
 
   <div class="main_column column">
-    <form class="post_form" action="feed.php" method="POST" enctype="multipart/form-data">
-      <input type="file" name="upload_img" id="fileToUpload">
+    <form class="post_form" action="upload.php" method="POST" enctype="multipart/form-data">
+      <input type="file" name="file">
       <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
-      <input type="submit" name="post" id="post_button" value="Publicar">
+      <input type="submit" name="post" value="Publicar">
       <hr>
     </form>
 
