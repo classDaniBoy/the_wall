@@ -1,9 +1,8 @@
 <?php 
 	include("includes/header.php");
-  $usersql = "SELECT * FROM usuarios WHERE id = 1";
-  $user = $mysqli->query($usersql)->fetch_assoc();
-  $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = 1";
-  $messages = $mysqli->query($messagessql);
+    $id = $_SESSION['user_logged_id'];
+    $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id'";
+    $messages = $mysqli->query($messagessql);
  ?>
 	<link rel="stylesheet" type="text/css" href="assets/css/profile_style.css">
   <style type="text/css">
@@ -18,11 +17,8 @@
  		<img src="img/userimage.jpg">
 
  		<div class="profile_info">
-      <p><?php echo $user['nombre'] ?></p>
-      <p><?php echo $user['nombreusuario'] ?></p>
- 			<p>Posts: 235</p>
- 			<p>Likes: 670</p>
- 			<p>Friends: 50</p>
+      <p><?php echo $_SESSION['user_logged_first_name'] . " " .$_SESSION['user_logged_last_name'] ?></p>
+      <p><?php echo $_SESSION['user_logged_user_name'] ?></p>
  		</div>
 
    <a href="settings.php">

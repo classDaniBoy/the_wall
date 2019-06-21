@@ -1,6 +1,5 @@
 <?php 
     include("includes/header.php");
-    include("includes/header.php");
   $usersql = "SELECT * FROM usuarios WHERE id = 1";
   $user = $mysqli->query($usersql)->fetch_assoc();
  ?>
