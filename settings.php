@@ -1,7 +1,6 @@
 <?php
-
 	include ("includes/header.php");
-	//include("includes/settings_handler.php");
+	include ("includes/controlador/settings_handler.php");
   $usersql = "SELECT * FROM usuarios WHERE id = 1";
   $user = $mysqli->query($usersql)->fetch_assoc();
 ?>
@@ -25,7 +24,7 @@
     </div>
     <br>
  
-	<form name="userDataForm" onsubmit = "return user_data_validate();" action="settings.php" method="POST" id="settings_in">
+	<form name="userDataForm" onsubmit = "return user_data_validate();" action="includes/controlador/settings_handler.php" method="POST" id="settings_in">
 		Nombre:<input type="text" name="nombre" placeholder="Inserte nuevo nombre" ><br>
 		Apellido:<input type="text" name="apellido" placeholder="Inserte nuevo apellido"><br>
 		Usuario:<input type="text" name="usuario" placeholder="Inserte un nuevo usuario" ><br>
@@ -34,7 +33,7 @@
 	</form>
 
 	<h4>Cambiar contraseña</h4>
-	<form name="userPasswordForm" onsubmit = "return user_password_validate();" action="settings.php" method="POST">
+	<form name="userPasswordForm" onsubmit = "return user_password_validate();" action="includes/controlador/passwordsettings_handler.php" method="POST">
 		Contraseña actual:<input type="password" name="actual_pass" ><br>
 		Contraseña nueva:<input type="password" name="new_pass" ><br>
 		Repita la nueva contraseña:<input type="password" name="new_pass2"><br>

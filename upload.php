@@ -1,4 +1,6 @@
 <?php
+include 'BD.php';
+include 'profile_self.php';
 if (isset($_POST['post'])) {
 	$file =$_FILES['file'];
 
@@ -17,6 +19,8 @@ if (isset($_POST['post'])) {
 			$fileNameNew = uniqid('',true). ".".$fileActualExt;
 			$fileDestination = 'uploads/local_Files'. $fileNameNew;
 			move_uploaded_file($fileTmpName,$fileDestination);
+			$sql = "INSERT INTO mensaje VALUES ('post_text',$fileNameNew' ,'$fileActualExt','$id', getdate())";
+			$query = mysqli_query($mysqli,$sql);
 			header("Location: profile_self.php?uploadsuccess");
 		}else{
 			echo "hubo un error al subir el archivo";
