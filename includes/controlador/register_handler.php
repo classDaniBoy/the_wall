@@ -7,9 +7,9 @@ $em2 = "";
 $password = "";
 $password2 = "";
 $date = ""; 
-$error_array = array();
 
 if(isset($_POST['register_button'])){
+	$error_array = array();
 
 	$fname = strip_tags($_POST['reg_fname']); 
 	$fname = str_replace(' ', '', $fname); 

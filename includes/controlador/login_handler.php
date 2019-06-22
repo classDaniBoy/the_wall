@@ -6,10 +6,8 @@ if(isset($_POST['login_button'])) {
 	
 	$_SESSION['log_email'] = $email; 
 	$password = ($_POST['log_password']);
-
 	$check_database_query = mysqli_query($mysqli, "SELECT * FROM usuarios WHERE email='$email' AND contrasenia='$password'");
 	$check_login_query = mysqli_num_rows($check_database_query);
-
 	if($check_login_query == 1) {
 		$row = mysqli_fetch_array($check_database_query);
 		$username = $row['nombreusuario'];
@@ -22,7 +20,6 @@ if(isset($_POST['login_button'])) {
 		$_SESSION['user_logged_last_name'] = $last_name;
 		$_SESSION['user_logged_id'] = $id;
 		$_SESSION['user_logged_email'] = $email;
-		var_dump($_SESSION);
 		header("Location: feed.php");
 		exit();
 	}

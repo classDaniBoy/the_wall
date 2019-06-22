@@ -26,7 +26,7 @@
           </form>
 		<nav>
 			<a href="">
-				User name
+				<?php echo $_SESSION['user_logged_user_name'];  ?>
 			</a>
 
 			<a href="index.php">
