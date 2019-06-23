@@ -38,6 +38,8 @@
 		Contraseña actual:<input type="password" name="actual_pass" ><br>
 		Contraseña nueva:<input type="password" name="new_pass" ><br>
 		Repita la nueva contraseña:<input type="password" name="new_pass2"><br>
+
+		<?php echo $passwordMessage; ?>
 		<input type="submit" name="cambiar" id="settings_submit2" value="Cambiar contraseña"><br>
 	</form>
 
