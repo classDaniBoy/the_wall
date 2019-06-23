@@ -52,8 +52,8 @@
 		while ($row=mysqli_fetch_array($usersReturnedQuery)) {
 			
 			echo "<div class=search_result>
-					<img src=mostrarImagen.php?id_imagen=".$row['id'].">
-					<div class=profile_pic>
+					<div class=profile_pic style='float: left ;margin-right: 10px;'>
+						<img src=mostrarImagen.php?id_imagen=".$row['id']." style='width: 145px;'>
 						<a href='". $row['nombreusuario'] ."'></a>
 					</div>
 					

@@ -331,3 +331,8 @@ textarea:focus {
 #search_hr{
 	margin-bottom: 0px;
 }
+
+.result_profile_pic{
+	float: left;
+	margin-right: 10px;
+}
