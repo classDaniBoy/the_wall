@@ -1,6 +1,7 @@
 <?php
 	include ("includes/header.php");
 	include ("includes/controlador/settings_handler.php");
+	include ("includes/controlador/passwordsettings_handler.php");
 	$id = $_SESSION['user_logged_id'];
   $usersql = "SELECT * FROM usuarios WHERE id = $id";
   $user = $mysqli->query($usersql)->fetch_assoc();
