@@ -291,3 +291,33 @@ textarea:focus {
 .btn.register {
 	margin-top: 5px;
 }
+.search{
+	 margin: 5px 5px 0 2%;
+}
+
+.search #search_text_input{
+	border:thin solid #E5E5E5;
+	float: left;
+	height: 23px;
+	outline: 0;
+	width: 100px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.button_holder{
+	background-color: #F1F1F1;
+	border:thin solid #E5E5E5;
+	cursor: pointer;
+	float: left;
+	height: 23px;
+	text-align: center;
+	width: 50px;
+	border-top-right-radius: 3px;
+	border-bottom-right-radius: 3px;
+}
+
+.button_holder img{
+	margin-top: 1px;
+	width: 20px;
+}

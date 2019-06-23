@@ -4,6 +4,7 @@
 	<!-- JAVASCRIPT -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="assets/js/bootstrap.js"></script>
+	<script src="assets/js/header.js"></script>
 	
 	<!-- CSS -->
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
@@ -20,11 +21,22 @@
 			<a href="index.php"> The Wall</a>
 
 		</div>
-		<form action="profile.php" class="form-inline col-md-6 mb-4" >
-            <input class="form-control form-control-sm mr-3 w-75" type="text" placeholder="Search" aria-label="Search">
-            <i class="fas fa-search" aria-hidden="true"></i>
-          </form>
-		<nav>
+		<div class="search">
+			<form action="search.php" method="GET" name="search_form" >
+            	<input  type="text" onkeyup="getLiveSearchUsers(this.value, 1)" name="q" placeholder="Search" autocomplete="off" id="search_text_input"aria-label="Search">
+            	<div class="button_holder">
+            		<img src="assets/images/glass.png">
+            	</div>
+          	</form>
+
+         <div class="search_results">
+         	
+         </div> 
+         <div class="search_results_footer_empty">
+         	
+         </div>
+     	</div>
+     	<nav>
 			<a href="">
 				<?php echo $_SESSION['user_logged_user_name'];  ?>
 			</a>

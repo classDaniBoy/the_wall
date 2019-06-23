@@ -1,5 +1,6 @@
 <?php 
 	include("includes/header.php");
+  include ("upload.php");
     $id = $_SESSION['user_logged_id'];
     $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id'";
     $messages = $mysqli->query($messagessql);
@@ -29,7 +30,7 @@
     <h1>a</h1><br>
 
     <div class="post_self column">
-    <form class="post_form" action="upload.php" method="POST" enctype="multipart/form-data">
+    <form class="post_form" action="profile_self.php" method="POST" enctype="multipart/form-data">
       <input type="file" name="file">
       <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
       <input type="submit" name="post" value="Publicar">
