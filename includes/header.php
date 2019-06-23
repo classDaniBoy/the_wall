@@ -17,7 +17,7 @@
 	 ?>
 	<div class="top_bar" >
 		<div class="logo">
-			<a href="index.php"> The Wall</a>
+			<a href="feed.php"> The Wall</a>
 
 		</div>
 		<form action="profile.php" class="form-inline col-md-6 mb-4" >
@@ -25,11 +25,11 @@
             <i class="fas fa-search" aria-hidden="true"></i>
           </form>
 		<nav>
-			<a href="">
+			<a href="profile_self.php">
 				<?php echo $_SESSION['user_logged_user_name'];  ?>
 			</a>
 
-			<a href="index.php">
+			<a href="feed.php">
 				<i class="fas fa-home fa-lg"></i>
 			</a>
 			<a href="settings.php">
