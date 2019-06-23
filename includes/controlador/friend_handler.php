@@ -15,7 +15,7 @@ if(isset($_POST['remove_friend'])){
 	$friend_id = $_POST['friend_id'];
 	$remove_friendquery = "DELETE FROM `siguiendo` WHERE `usuarios_id`='$user_id' AND `usuarioseguido_id` = '$friend_id'";
 	$mysqli->query($remove_friendquery);
-	header("Location: profile.php");
+	header("Location: ". $_POST['page_from']);
 	exit();
 }
 ?>

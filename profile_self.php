@@ -2,9 +2,28 @@
 	include("includes/header.php");
   include("includes/controlador/message_post_handler.php");
   include("includes/controlador/message_delete_handler.php");
+  include("includes/controlador/friend_handler.php"); 
+  include("includes/controlador/likes_handler.php"); 
     $id = $_SESSION['user_logged_id'];
     $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id' ORDER BY fechayhora DESC";
     $messages = $mysqli->query($messagessql);
+    $followssql = "SELECT usuarioseguido_id FROM siguiendo WHERE usuarios_id = $id";
+    $ids = $mysqli->query($followssql);
+    $follows_ids = [];
+    foreach ($ids as $key => $value) {
+      array_push($follows_ids, $value['usuarioseguido_id']);
+    }
+      $friendsqueryhelper ='';  
+  for ($i = 0; $i < count($follows_ids); $i++) {
+        if ($i == count($follows_ids)-1) {
+            $friendsqueryhelper .= " id ='".$follows_ids[$i]."'";
+        }
+        else{
+            $friendsqueryhelper .= " id ='".$follows_ids[$i]."' OR";
+        }
+    }
+    $friendsresults = "SELECT * FROM usuarios WHERE" . $friendsqueryhelper;
+  $friends = $mysqli->query($friendsresults);
  ?>
 	<link rel="stylesheet" type="text/css" href="assets/css/profile_style.css">
   <style type="text/css">
@@ -14,7 +33,7 @@
     }
 
   </style>
-	
+	<div class="wrapper" >
  	<div class="profile_left">
  		<img src="img/userimage.jpg">
 
@@ -27,9 +46,9 @@
      <button type="button" class="btn register btn-primary">Configuracion de cuenta</button>
    </a>
  	</div>
-
-    <h1>a</h1><br>
-
+  <br>
+    <br>
+    <br/> 
     <div class="post_self column">
     <form class="post_form" action="profile_self.php" method="POST" enctype="multipart/form-data">
       <input type="hidden" name="page_from" value="profile_self.php">
@@ -39,14 +58,16 @@
     </form>
     </div>
     <br>
-
 		<div class="container_self column">
+    <h3> <a href="#friendlist"> Ver tus amigos</a></h3>
+      <h2>TUS MENSAJES</h2>
          <?php foreach ($messages as $key => $message): ?>
   			<div class="row">
     			<div class="col-sm-12 strip">
               <?php echo $_SESSION['user_logged_user_name'] ?><br>
       				<img class="comment" src="img/userimage.jpg" alt="profile image" />
       				<?php echo $message['texto'] ?><br>
+
               <a href="profile_self.php">
                 <form action="profile_self.php" method="POST">
                   <input type="hidden" name="page_from" value="profile_self.php">
@@ -54,10 +75,74 @@
                   <button type="submit" name="delete_message" class="btn register btn-primary">Eliminar</button>
                 </form>
               </a>
+              <?php 
+                    $message_id = $message['id'];
+                    $liked_query = "SELECT * FROM me_gusta WHERE usuarios_id = $id AND mensaje_id =$message_id";
+                    $liked_helper = $mysqli->query($liked_query);
+                    if (mysqli_num_rows($liked_helper) > 0) {
+                      $liked = true;
+                    }
+                    else{
+                      $liked = false;      
+                    }
+                 ?>
+                 <?php if ($liked): ?>
+                  <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="profile_self.php">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="remove_like" value="Ya no me gusta">
+                    <div class="like_value">
+                    <p><?php
+                        
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>  Likes</p>
+                    </div>
+                </form>  
+                <?php else: ?>
+                <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="profile_self.php">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="add_like" value="Me gusta">
+                    <div class="like_value">
+                    <p><?php
+                        
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>  Likes</p>
+                    </div>
+                </form>
+                <?php endif ?>
     			</div>
   			</div>
         <?php endforeach; ?> 
+    </div>
+    <div class="container_self column">
+    <h2>LISTADO DE AMIGOS</h2>
+         <?php foreach ($friends as $key => $friend): ?>
+        <div class="row" id="friendlist">
+          <div class="col-sm-12 strip">
+              <?php echo $friend['nombreusuario'] ?><br>
+              <img class="comment" src="img/userimage.jpg" alt="profile image" />
+              <?php echo $friend['nombre'] . " " . $friend['apellido'] ?><br>
+              <a href="profile_self.php">
+                <form action="profile_self.php" method="POST">
+                  <input type="hidden" name="page_from" value="profile_self.php">
+                  <input type="hidden" name="friend_id" value="<?php echo $friend['id'] ?>" >
+                  <button type="submit" name="remove_friend" class="btn register btn-primary">Eliminar</button>
+                </form>
+              </a>
+          </div>
         </div>
+        <?php endforeach; ?> 
+    </div>
+    </div>
 <?php 
     include("includes/footer.php");
  ?>
