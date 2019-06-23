@@ -52,7 +52,7 @@
 		while ($row=mysqli_fetch_array($usersReturnedQuery)) {
 			
 			echo "<div class=search_result>
-					<img src=mostrarImagen.php?id_imagen=7>
+					<img src=mostrarImagen.php?id_imagen=".$row['id'].">
 					<div class=profile_pic>
 						<a href='". $row['nombreusuario'] ."'></a>
 					</div>

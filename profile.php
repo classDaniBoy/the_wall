@@ -47,12 +47,13 @@
  		</div>
     <?php if ($added): ?>
       <form  name="friendRemovalForm" action="profile.php" method="POST">
+        <input type="hidden" name="page_from" value="profile.php?friend_id=<?php echo $friend_id ?>">
         <input type="hidden" value="<?php echo $friend_id ?>" id="friend_id" name="friend_id">
         <button type="submit" name="remove_friend" class="btn danger btn-primary">Dejar de seguir</button>
       </form>
     <?php else: ?>
       <form  name="friendForm" action="profile.php" method="POST">
-        <input type="hidden" name="page_from" value="profile.php">
+        <input type="hidden" name="page_from" value="profile.php?friend_id=<?php echo $friend_id ?>">
         <input type="hidden" value="<?php echo $friend_id ?>" id="friend_id" name="friend_id">
         <button type="submit" name="add_friend" class="btn register btn-primary">Añadir a mis amigos</button>
       </form>

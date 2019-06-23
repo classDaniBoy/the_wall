@@ -6,7 +6,7 @@ if(isset($_POST['add_friend'])){
 	$friend_id = $_POST['friend_id'];
 	$add_friendquery = "INSERT INTO `siguiendo`(`usuarios_id`, `usuarioseguido_id`) VALUES ('$user_id', '$friend_id')";
 	$mysqli->query($add_friendquery);
-	header("Location: profile.php");
+	header("Location: ". $_POST['page_from']);
 	exit();
 }
 

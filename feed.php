@@ -26,7 +26,7 @@
   $total_records = $total_records['total_records'];
   $total_no_of_pages = ceil($total_records / $total_records_per_page);
   $second_last = $total_no_of_pages - 1; // total pages minus 1
-  $messagessql = "SELECT mensaje.texto,mensaje.id, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . "  ORDER BY mensaje.fechayhora DESC LIMIT $offset, $total_records_per_page";
+  $messagessql = "SELECT mensaje.texto,mensaje.imagen_contenido,mensaje.imagen_tipo,mensaje.usuarios_id,mensaje.id, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . "  ORDER BY mensaje.fechayhora DESC LIMIT $offset, $total_records_per_page";
   $messages = $mysqli->query($messagessql);
 
 
@@ -43,7 +43,7 @@
 
  <div class="wrapper">
   <div class="user_details column">
-    <a href="profile_self.php"> <img src="mostrarImagen.php?id_imagen=7"></a>
+    <a href="profile_self.php"> <img src="mostrarImagen.php?id_imagen=<?php echo $id ?>"></a>
 
     <div class="user_details_left_right">
       <a href="profile_self.php">
@@ -67,10 +67,14 @@
         <div class="status_post column">
     <?php foreach ($messages as $key => $message): ?>
             <div class="status_post_profile_pic">
-                <img src="mostrarImagen.php?id_imagen=7" width="50">
+                <img src="mostrarImagen.php?id_imagen=<?php echo $message['usuarios_id'] ?>" width="50">
             </div>
             <div class="posted_by">
                 <a href="profile.php"> <?php echo $message['nombreusuario'] ?> </a>
+                <br>
+                <?php if ($message['imagen_contenido'] !== ""): ?>
+                <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" />
+                <?php endif ?>
                 <p> <?php echo $message['texto'] ?></p>
                 <?php 
                     $message_id = $message['id'];

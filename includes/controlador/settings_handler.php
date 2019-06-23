@@ -38,10 +38,21 @@ if(isset($_POST['listo'])){
 	if(strlen($lname) > 25 || strlen($lname) < 2) {
 		array_push($error_array,  "Your last name must be between 2 and 25 characters<br>");
 	}
-
+		$sql = "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname' WHERE id='$id'";
+			if (isset($_FILES['profile_pic'])) {
+			$imgData = addslashes(file_get_contents($_FILES["profile_pic"]["tmp_name"]));
+			$fileName = $_FILES ['profile_pic']['name'];
+			$fileExt = explode('.', $fileName);
+			$fileActualExt = strtolower(end($fileExt));
+			$allowed = array('jpg', 'jpeg' , 'png');
+			if (!in_array($fileActualExt, $allowed)) {
+				array_push($error_array, "Please upload a valid image format<br>");
+			}
+		$sql = "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname',`foto_contenido`='$imgData',`foto_tipo`='$fileActualExt' WHERE id='$id'";
+		}
 	if(empty($error_array)) {
 
-		mysqli_query($mysqli, "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname' WHERE id='$id'");
+		mysqli_query($mysqli,$sql);
 		header("Location= settings.php?success");
 
 	}

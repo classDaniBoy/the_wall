@@ -43,7 +43,7 @@
   </style>
 	<div class="wrapper" >
  	<div class="profile_left">
- 		<img src="mostrarImagen.php?id_imagen=7">
+ 		<img src="mostrarImagen.php?id_imagen=<?php echo $id ?>">
 
  		<div class="profile_info">
       <p><?php echo $_SESSION['user_logged_first_name'] . " <br/> " .$_SESSION['user_logged_last_name'] ?></p>
@@ -73,9 +73,11 @@
   			<div class="row">
     			<div class="col-sm-12 strip">
               <?php echo $_SESSION['user_logged_user_name'] ?><br>
-      				<img class="comment" src="mostrarImagen.php?id_imagen=7" alt="profile image" />
+      				<img class="comment" src="mostrarImagen.php?id_imagen=<?php echo $_SESSION['user_logged_id'] ?>" alt="profile image" />
       				<?php echo $message['texto'] ?><br>
-
+              <?php if ($message['imagen_contenido'] !== ""): ?>
+                <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" />
+              <?php endif ?>
               <a href="profile_self.php">
                 <form action="profile_self.php" method="POST">
                   <input type="hidden" name="page_from" value="profile_self.php">
@@ -161,7 +163,7 @@
         <div class="row" id="friendlist">
           <div class="col-sm-12 strip">
               <?php echo $friend['nombreusuario'] ?><br>
-              <img class="comment" src="mostrarImagen.php?id_imagen=7" alt="profile image" />
+              <img class="comment" src="mostrarImagen.php?id_imagen=<?php echo $friend['id'] ?>" alt="profile image" />
               <?php echo $friend['nombre'] . " " . $friend['apellido'] ?><br>
               <a href="profile_self.php">
                 <form action="profile_self.php" method="POST">

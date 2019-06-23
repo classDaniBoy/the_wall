@@ -1,7 +1,8 @@
 <?php
 	include ("includes/header.php");
 	include ("includes/controlador/settings_handler.php");
-  $usersql = "SELECT * FROM usuarios WHERE id = 1";
+	$id = $_SESSION['user_logged_id'];
+  $usersql = "SELECT * FROM usuarios WHERE id = $id";
   $user = $mysqli->query($usersql)->fetch_assoc();
 ?>
 <link rel="stylesheet" type="text/css" href="assets/css/settings_style.css">
@@ -19,16 +20,16 @@
 	<div class="profile_img">
 		<img src="mostrarImagen.php?id_imagen=7">
     	<br>
-		<p>Cambiar imagen de perfil</p>
-		<input type="file" name="profile_pic" required>
     </div>
     <br>
  
-	<form name="userDataForm" onsubmit = "return user_data_validate();" action="settings.php" method="POST" id="settings_in">
+	<form enctype="multipart/form-data" name="userDataForm" onsubmit = "return user_data_validate();" action="settings.php" method="POST" id="settings_in">
 		Nombre:<input type="text" name="nombre" placeholder="Inserte nuevo nombre" ><br>
 		Apellido:<input type="text" name="apellido" placeholder="Inserte nuevo apellido"><br>
 		Usuario:<input type="text" name="usuario" placeholder="Inserte un nuevo usuario" ><br>
 		Email:<input type="text" name="email" placeholder="Inserte nuevo email"><br>
+		<p>Cambiar imagen de perfil :</p>
+		<input type="file" name="profile_pic"> <br>
 		<input type="submit" name="listo" id="settings_submit" value="Listo"><br>
 	</form>
 
