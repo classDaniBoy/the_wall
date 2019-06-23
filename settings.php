@@ -18,7 +18,7 @@
 	
 	<h4>Configuracion de cuenta</h4>
 	<div class="profile_img">
-		<img src="mostrarImagen.php?id_imagen=7">
+		<img src="mostrarImagen.php?id_imagen=<?php echo $id ?>">
     	<br>
     </div>
     <br>

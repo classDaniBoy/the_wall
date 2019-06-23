@@ -35,7 +35,7 @@
  	</style>
 	
  	<div class="profile_left">
- 		<img src="mostrarImagen.php?id_imagen=7">
+ 		<img src="mostrarImagen.php?id_imagen=<?php echo $friend_id ?>">
 
  		<div class="profile_info">
       <p>
@@ -68,7 +68,10 @@
       <?php foreach ($messages as $key => $message): ?>
   			<div class="row">
     			<div class="col-sm-12 strip">
-      				<img class="comment" src="mostrarImagen.php?id_imagen=7" alt="profile image" />
+      				<img class="comment" src="mostrarImagen.php?id_imagen=<?php echo $message['usuarios_id']?>" alt="profile image" />
+              <?php if ($message['imagen_contenido'] != ""): ?>
+                <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" />
+                <?php endif ?>
               <?php echo $message['texto'] ?>
     			</div>
   			</div>
