@@ -24,7 +24,7 @@
     </div>
     <br>
  
-	<form name="userDataForm" onsubmit = "return user_data_validate();" action="includes/controlador/settings_handler.php" method="POST" id="settings_in">
+	<form name="userDataForm" onsubmit = "return user_data_validate();" action="settings.php" method="POST" id="settings_in">
 		Nombre:<input type="text" name="nombre" placeholder="Inserte nuevo nombre" ><br>
 		Apellido:<input type="text" name="apellido" placeholder="Inserte nuevo apellido"><br>
 		Usuario:<input type="text" name="usuario" placeholder="Inserte un nuevo usuario" ><br>

@@ -25,15 +25,6 @@ if(isset($_POST['listo'])){
 		if(filter_var($em, FILTER_VALIDATE_EMAIL)) {
 
 			$em = filter_var($em, FILTER_VALIDATE_EMAIL);
-
-			$e_check = mysqli_query($mysqli, "SELECT email FROM usuarios WHERE email='$em'");
-
-			$num_rows = mysqli_num_rows($e_check);
-
-			if($num_rows > 0) {
-				array_push($error_array, "Email already in use<br>");
-			}
-
 		}
 		else {
 			array_push($error_array, "Invalid email format<br>");
@@ -48,17 +39,9 @@ if(isset($_POST['listo'])){
 		array_push($error_array,  "Your last name must be between 2 and 25 characters<br>");
 	}
 
-
-
-	$check_username_query = mysqli_query($mysqli, "SELECT nombreusuario FROM usuarios WHERE nombreusuario='$uname'");
-	$num_rows = mysqli_num_rows($check_username_query);
-
-	if($num_rows > 0) {
-				array_push($error_array, "Username already in use<br>");
-			}
-
 	if(empty($error_array)) {
-		mysqli_query($mysqli, "UPDATE `usuarios`SET`apellido`=$lname, `nombre`=$fname, `email`=$em, `nombreusuario`=$uname WHERE id=$id");
+
+		mysqli_query($mysqli, "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname' WHERE id='$id'");
 		header("Location= settings.php?success");
 
 	}
