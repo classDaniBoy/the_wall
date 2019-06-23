@@ -1,5 +1,7 @@
 <?php 
     include("includes/header.php");
+    include("includes/controlador/message_post_handler.php");
+    include("includes/controlador/likes_handler.php");
   $id = $_SESSION['user_logged_id'];
   $usersql = "SELECT * FROM usuarios WHERE id = $id";
   $user = $mysqli->query($usersql)->fetch_assoc();
@@ -44,17 +46,18 @@
 
     <div class="user_details_left_right">
       <a href="profile_self.php">
-      <p><?php echo $user['nombre'] . " " . $user['apellido'] ?> </p>
+      <p><?php echo $user['nombre'] . "<br/> " . $user['apellido'] ?> </p>
 
       </a>
     </div>
   </div>
 
   <div class="main_column column">
-    <form class="post_form" action="upload.php" method="POST" enctype="multipart/form-data">
+    <form class="post_form" action="feed.php" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="page_from" value="feed.php">
       <input type="file" name="file">
       <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
-      <input type="submit" name="post" value="Publicar">
+      <input type="submit" name="post_message" value="Publicar">
       <hr>
     </form>
 
@@ -68,18 +71,48 @@
             <div class="posted_by">
                 <a href="profile.php"> <?php echo $message['nombreusuario'] ?> </a>
                 <p> <?php echo $message['texto'] ?></p>
-                <form class="likear" action="feed.php" method="POST">
-                    <input type="submit" class="comment_like" name=like_button value="Me gusta">
+                <?php 
+                    $message_id = $message['id'];
+                    $liked_query = "SELECT * FROM me_gusta WHERE usuarios_id = $id AND mensaje_id =$message_id";
+                    $liked_helper = $mysqli->query($liked_query);
+                    if (mysqli_num_rows($liked_helper) > 0) {
+                      $liked = true;
+                    }
+                    else{
+                      $liked = false;      
+                    }
+                 ?>
+                 <?php if ($liked): ?>
+                  <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="remove_like" value="Ya no me gusta">
                     <div class="like_value">
                     <p><?php
-                        $message_id = $message['id'];
+                        
                         $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
                         $likes = $mysqli->query($likesquery);
                         $likes = mysqli_num_rows($likes);
                         echo $likes;
-                     ?>Likes</p>
+                     ?>  Likes</p>
+                    </div>
+                </form>  
+                <?php else: ?>
+                <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="add_like" value="Me gusta">
+                    <div class="like_value">
+                    <p><?php
+                        
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>  Likes</p>
                     </div>
                 </form>
+                <?php endif ?>
             </div>
         </div>
     <?php endforeach; ?> 

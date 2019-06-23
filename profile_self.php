@@ -1,8 +1,9 @@
 <?php 
 	include("includes/header.php");
-  include ("upload.php");
+  include("includes/controlador/message_post_handler.php");
+  include("includes/controlador/message_delete_handler.php");
     $id = $_SESSION['user_logged_id'];
-    $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id'";
+    $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id' ORDER BY fechayhora DESC";
     $messages = $mysqli->query($messagessql);
  ?>
 	<link rel="stylesheet" type="text/css" href="assets/css/profile_style.css">
@@ -18,7 +19,7 @@
  		<img src="img/userimage.jpg">
 
  		<div class="profile_info">
-      <p><?php echo $_SESSION['user_logged_first_name'] . " " .$_SESSION['user_logged_last_name'] ?></p>
+      <p><?php echo $_SESSION['user_logged_first_name'] . " <br/> " .$_SESSION['user_logged_last_name'] ?></p>
       <p><?php echo $_SESSION['user_logged_user_name'] ?></p>
  		</div>
 
@@ -31,9 +32,10 @@
 
     <div class="post_self column">
     <form class="post_form" action="profile_self.php" method="POST" enctype="multipart/form-data">
+      <input type="hidden" name="page_from" value="profile_self.php">
       <input type="file" name="file">
       <textarea name="post_text" id="post_text" maxlength="140" placeholder="Tienes algo que compartir?"></textarea>
-      <input type="submit" name="post" value="Publicar">
+      <input type="submit" name="post_message" value="Publicar">
     </form>
     </div>
     <br>
@@ -42,11 +44,15 @@
          <?php foreach ($messages as $key => $message): ?>
   			<div class="row">
     			<div class="col-sm-12 strip">
-              <?php echo $user['nombre'] ?><br>
+              <?php echo $_SESSION['user_logged_user_name'] ?><br>
       				<img class="comment" src="img/userimage.jpg" alt="profile image" />
       				<?php echo $message['texto'] ?><br>
               <a href="profile_self.php">
-                <button type="button" class="btn register btn-primary">Eliminar</button>
+                <form action="profile_self.php" method="POST">
+                  <input type="hidden" name="page_from" value="profile_self.php">
+                  <input type="hidden" name="delete_message_id" value="<?php echo $message['id'] ?>" >
+                  <button type="submit" name="delete_message" class="btn register btn-primary">Eliminar</button>
+                </form>
               </a>
     			</div>
   			</div>
