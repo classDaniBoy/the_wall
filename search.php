@@ -22,22 +22,23 @@
 			echo "Sin resultados";
 		}else{
 			
-
-			if($type=="nombreusuario"){
-				$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE nombreusuario LIKE '$query%' LIMIT 8");
-			}else{
+			$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE nombreusuario LIKE '$query%'");
+			if(mysqli_num_rows($usersReturnedQuery)==0){
+				
+			
 				$names = explode(" ", $query);
 
 				if (count($names)==3) {
 
 
 					$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[2]%')");
-			}else{
-				if (count($names)== 2) {
-					$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[1]%')");
-				}else
-					$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[0]%')");
+				}else{
+					if (count($names)== 2) {
+						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[1]%')");
+					}else
+						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[0]%')");
 			}
+		}
 		}
 
 		if (mysqli_num_rows($usersReturnedQuery)==0) {
@@ -66,7 +67,6 @@
 					<hr id = search_hr>";		
 			
 
-		}
 		}
 
 
