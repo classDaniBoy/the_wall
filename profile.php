@@ -1,6 +1,7 @@
 <?php 
 	include("includes/header.php");
   include("includes/controlador/friend_handler.php"); 
+  include("includes/controlador/likes_handler.php"); 
     $friend_id = 2;
     $user_id = $_SESSION['user_logged_id'];
     $added_query = "SELECT * FROM siguiendo WHERE usuarios_id = $user_id AND usuarioseguido_id =$friend_id";
@@ -43,6 +44,7 @@
       </form>
     <?php else: ?>
       <form  name="friendForm" action="profile.php" method="POST">
+        <input type="hidden" name="page_from" value="profile.php">
         <input type="hidden" value="<?php echo $friend_id ?>" id="friend_id" name="friend_id">
         <button type="submit" name="add_friend" class="btn register btn-primary">Añadir a mis amigos</button>
       </form>

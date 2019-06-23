@@ -84,6 +84,7 @@
                  ?>
                  <?php if ($liked): ?>
                   <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="feed.php">
                     <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
                     <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
                     <input type="submit" class="comment_like" name="remove_like" value="Ya no me gusta">
@@ -99,6 +100,7 @@
                 </form>  
                 <?php else: ?>
                 <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="feed.php">
                     <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
                     <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
                     <input type="submit" class="comment_like" name="add_like" value="Me gusta">
