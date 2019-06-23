@@ -57,7 +57,7 @@
 			<a href="settings.php">
 				<i class="fas fa-user-cog fa-lg"></i>
 			</a>
-			<a href="index.php">
+			<a href="includes/controlador/logout.php">
 				<i class="fas fa-sign-out-alt fa-lg"></i>
 			</a>
 		</nav>
