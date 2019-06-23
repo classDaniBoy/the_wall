@@ -107,7 +107,7 @@
                     ?>">
           <br>
           <?php 
-            if ($error_array) {
+            if (isset($error_array)) {
                 if(in_array("Email already in use<br>", $error_array)) echo "Email already in use<br>"; 
                     else if(in_array("Invalid email format<br>", $error_array)) echo "Invalid email format<br>";
                     else if(in_array("Emails don't match<br>", $error_array)) echo "Emails don't match<br>"; 
@@ -118,7 +118,7 @@
           <input type="password" name="reg_password2" placeholder="Confirm Password">
           <br>
           <?php 
-            if ($error_array) {
+            if (isset($error_array)) {
             if(in_array("Your passwords do not match<br>", $error_array)) echo "Your passwords do not match<br>"; 
                     else if(in_array("Your password can only contain english characters or numbers<br>", $error_array)) echo "Your password can only contain english characters or numbers<br>";
                     else if(in_array("Your password must be betwen 5 and 30 characters<br>", $error_array)) echo "Your password must be betwen 5 and 30 characters<br>"; 
@@ -130,7 +130,7 @@
           <input type="submit" name="register_button" value="Registrarse">
           <br>
           <?php 
-            if ($error_array) {
+            if (isset($error_array)) {
             if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; 
             }
           ?>

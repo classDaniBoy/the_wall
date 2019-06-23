@@ -5,7 +5,15 @@
   include("includes/controlador/friend_handler.php"); 
   include("includes/controlador/likes_handler.php"); 
     $id = $_SESSION['user_logged_id'];
-    $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id' ORDER BY fechayhora DESC";
+
+    // PAAGINATION
+    $result_count = mysqli_query($mysqli,"SELECT COUNT(*) As total_records FROM mensaje WHERE usuarios_id = '$id'");
+    $total_records = mysqli_fetch_array($result_count);
+    $total_records = $total_records['total_records'];
+    $total_no_of_pages = ceil($total_records / $total_records_per_page);
+    $second_last = $total_no_of_pages - 1; // total pages minus 1
+
+    $messagessql = "SELECT * FROM mensaje WHERE usuarios_id = '$id' ORDER BY fechayhora DESC LIMIT $offset, $total_records_per_page";
     $messages = $mysqli->query($messagessql);
     $followssql = "SELECT usuarioseguido_id FROM siguiendo WHERE usuarios_id = $id";
     $ids = $mysqli->query($followssql);
@@ -35,7 +43,7 @@
   </style>
 	<div class="wrapper" >
  	<div class="profile_left">
- 		<img src="img/userimage.jpg">
+ 		<img src="mostrarImagen.php?id_imagen=7">
 
  		<div class="profile_info">
       <p><?php echo $_SESSION['user_logged_first_name'] . " <br/> " .$_SESSION['user_logged_last_name'] ?></p>
@@ -65,14 +73,14 @@
   			<div class="row">
     			<div class="col-sm-12 strip">
               <?php echo $_SESSION['user_logged_user_name'] ?><br>
-      				<img class="comment" src="img/userimage.jpg" alt="profile image" />
+      				<img class="comment" src="mostrarImagen.php?id_imagen=7" alt="profile image" />
       				<?php echo $message['texto'] ?><br>
 
               <a href="profile_self.php">
                 <form action="profile_self.php" method="POST">
                   <input type="hidden" name="page_from" value="profile_self.php">
                   <input type="hidden" name="delete_message_id" value="<?php echo $message['id'] ?>" >
-                  <button type="submit" name="delete_message" class="btn register btn-primary">Eliminar</button>
+                  <button type="submit" name="delete_message" class="btn register btn-primary">Eliminar mensaje</button>
                 </form>
               </a>
               <?php 
@@ -122,14 +130,38 @@
     			</div>
   			</div>
         <?php endforeach; ?> 
+        <ul class="pagination">
+      <?php if($page_no > 1){
+        echo "<li><a href='?page_no=1'>First Page <br></a></li>";
+      } ?>
+          
+      <li <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+      <a <?php if($page_no > 1){
+        echo "href='?page_no=$previous_page'";
+      } ?>>Previous </a><br>
+      </li>
+          
+      <li <?php if($page_no >= $total_no_of_pages){
+        echo "class='disabled'";
+      } ?>>
+      <a <?php if($page_no < $total_no_of_pages) {
+        echo "href='?page_no=$next_page'";
+      } ?>>Next </a> <br>
+      </li>
+       
+      <?php if($page_no < $total_no_of_pages){
+        echo "<li><a href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+    } ?>
+    </ul>
     </div>
+    <br>
     <div class="container_self column">
     <h2>LISTADO DE AMIGOS</h2>
          <?php foreach ($friends as $key => $friend): ?>
         <div class="row" id="friendlist">
           <div class="col-sm-12 strip">
               <?php echo $friend['nombreusuario'] ?><br>
-              <img class="comment" src="img/userimage.jpg" alt="profile image" />
+              <img class="comment" src="mostrarImagen.php?id_imagen=7" alt="profile image" />
               <?php echo $friend['nombre'] . " " . $friend['apellido'] ?><br>
               <a href="profile_self.php">
                 <form action="profile_self.php" method="POST">
@@ -142,6 +174,7 @@
         </div>
         <?php endforeach; ?> 
     </div>
+    
     </div>
 <?php 
     include("includes/footer.php");

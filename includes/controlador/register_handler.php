@@ -35,6 +35,16 @@ if(isset($_POST['register_button'])){
 	$password = strip_tags($_POST['reg_password']);
 	$password2 = strip_tags($_POST['reg_password2']);
 
+	$imgData = addslashes(file_get_contents($_FILES["profile_pic"]["tmp_name"]));
+
+	$fileName = $_FILES ['profile_pic']['name'];
+	$fileExt = explode('.', $fileName);
+	$fileActualExt = strtolower(end($fileExt));
+
+	$allowed = array('jpg', 'jpeg' , 'png');
+	if (!in_array($fileActualExt, $allowed)) {
+		array_push($error_array, "Please upload a valid image format<br>");
+	}
 	if($em == $em2) {
 		if(filter_var($em, FILTER_VALIDATE_EMAIL)) {
 
@@ -90,7 +100,7 @@ if(isset($_POST['register_button'])){
 			}
 
 	if(empty($error_array)) {
-		$query = mysqli_query($mysqli, "INSERT INTO `usuarios`(`apellido`, `nombre`, `email`, `nombreusuario`, `contrasenia`) VALUES ('$lname', '$fname', '$em','$uname', '$password')");
+		$query = mysqli_query($mysqli, "INSERT INTO `usuarios`(`apellido`, `nombre`, `email`, `nombreusuario`, `contrasenia`,`foto_contenido`,`foto_tipo`) VALUES ('$lname', '$fname', '$em','$uname', '$password','$imgData','$fileActualExt')");
 
 		array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
 

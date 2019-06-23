@@ -2,6 +2,7 @@
     include("includes/header.php");
     include("includes/controlador/message_post_handler.php");
     include("includes/controlador/likes_handler.php");
+
   $id = $_SESSION['user_logged_id'];
   $usersql = "SELECT * FROM usuarios WHERE id = $id";
   $user = $mysqli->query($usersql)->fetch_assoc();
@@ -20,14 +21,15 @@
             $messagequeryhelper .= " usuarios_id ='".$follows_ids[$i]."' OR";
         }
     }
-  $messagessql = "SELECT mensaje.texto,mensaje.id, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . " ORDER BY mensaje.fechayhora DESC";
+  $result_count = mysqli_query($mysqli,"SELECT COUNT(*) As total_records FROM mensaje WHERE ". $messagequeryhelper);
+  $total_records = mysqli_fetch_array($result_count);
+  $total_records = $total_records['total_records'];
+  $total_no_of_pages = ceil($total_records / $total_records_per_page);
+  $second_last = $total_no_of_pages - 1; // total pages minus 1
+  $messagessql = "SELECT mensaje.texto,mensaje.id, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . "  ORDER BY mensaje.fechayhora DESC LIMIT $offset, $total_records_per_page";
   $messages = $mysqli->query($messagessql);
 
-  /*
-    SELECT Orders.OrderID, Customers.CustomerName, Orders.OrderDate
-    FROM Orders
-    INNER JOIN Customers ON Orders.CustomerID=Customers.CustomerID;
-  */
+
  ?>
 
  <link rel="stylesheet" type="text/css" href="assets/css/feedstyle.css">
@@ -40,9 +42,8 @@
 
 
  <div class="wrapper">
-    
   <div class="user_details column">
-    <a href="profile_self.php"> <img src="img/userimage.jpg"></a>
+    <a href="profile_self.php"> <img src="mostrarImagen.php?id_imagen=7"></a>
 
     <div class="user_details_left_right">
       <a href="profile_self.php">
@@ -63,10 +64,10 @@
 
   </div>
 
-    <?php foreach ($messages as $key => $message): ?>
         <div class="status_post column">
+    <?php foreach ($messages as $key => $message): ?>
             <div class="status_post_profile_pic">
-                <img src="assets/images/profile_pics/defaults/head_emerald.png" width="50">
+                <img src="mostrarImagen.php?id_imagen=7" width="50">
             </div>
             <div class="posted_by">
                 <a href="profile.php"> <?php echo $message['nombreusuario'] ?> </a>
@@ -116,10 +117,36 @@
                 </form>
                 <?php endif ?>
             </div>
+    <?php endforeach; ?>
+    <br>
+    <br>
+    <br>
+    <ul class="pagination">
+      <?php if($page_no > 1){
+        echo "<li><a href='?page_no=1'>First Page <br></a></li>";
+      } ?>
+          
+      <li <?php if($page_no <= 1){ echo "class='disabled'"; } ?>>
+      <a <?php if($page_no > 1){
+        echo "href='?page_no=$previous_page'";
+      } ?>>Previous </a><br>
+      </li>
+          
+      <li <?php if($page_no >= $total_no_of_pages){
+        echo "class='disabled'";
+      } ?>>
+      <a <?php if($page_no < $total_no_of_pages) {
+        echo "href='?page_no=$next_page'";
+      } ?>>Next </a> <br>
+      </li>
+       
+      <?php if($page_no < $total_no_of_pages){
+        echo "<li><a href='?page_no=$total_no_of_pages'>Last &rsaquo;&rsaquo;</a></li>";
+    } ?>
+    </ul>
         </div>
-    <?php endforeach; ?> 
-  </div>
 
+  </div>
 </body>
 
 </html>

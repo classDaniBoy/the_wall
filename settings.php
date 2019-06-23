@@ -17,7 +17,7 @@
 	
 	<h4>Configuracion de cuenta</h4>
 	<div class="profile_img">
-		<img src="img/userimage.jpg">
+		<img src="mostrarImagen.php?id_imagen=7">
     	<br>
 		<p>Cambiar imagen de perfil</p>
 		<input type="file" name="profile_pic" required>
@@ -33,7 +33,7 @@
 	</form>
 
 	<h4>Cambiar contraseña</h4>
-	<form name="userPasswordForm" onsubmit = "return user_password_validate();" action="includes/controlador/passwordsettings_handler.php" method="POST">
+	<form name="userPasswordForm" onsubmit = "return user_password_validate();" action="settings.php" method="POST">
 		Contraseña actual:<input type="password" name="actual_pass" ><br>
 		Contraseña nueva:<input type="password" name="new_pass" ><br>
 		Repita la nueva contraseña:<input type="password" name="new_pass2"><br>
