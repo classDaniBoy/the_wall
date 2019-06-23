@@ -45,6 +45,5 @@ if(isset($_POST['listo'])){
 		header("Location= settings.php?success");
 
 	}
-
 }
 ?>

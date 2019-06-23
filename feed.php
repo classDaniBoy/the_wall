@@ -18,7 +18,7 @@
             $messagequeryhelper .= " usuarios_id ='".$follows_ids[$i]."' OR";
         }
     }
-  $messagessql = "SELECT mensaje.texto, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . " ORDER BY mensaje.fechayhora DESC";
+  $messagessql = "SELECT mensaje.texto,mensaje.id, usuarios.nombreusuario  FROM mensaje INNER JOIN usuarios ON mensaje.usuarios_id=usuarios.id WHERE" . $messagequeryhelper . " ORDER BY mensaje.fechayhora DESC";
   $messages = $mysqli->query($messagessql);
 
   /*
@@ -71,7 +71,13 @@
                 <form class="likear" action="feed.php" method="POST">
                     <input type="submit" class="comment_like" name=like_button value="Me gusta">
                     <div class="like_value">
-                    <p>25 Likes</p>
+                    <p><?php
+                        $message_id = $message['id'];
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>Likes</p>
                     </div>
                 </form>
             </div>
