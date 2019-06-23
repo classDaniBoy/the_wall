@@ -321,3 +321,13 @@ textarea:focus {
 	margin-top: 1px;
 	width: 20px;
 }
+
+
+.search_result{
+	padding: 10px;
+	height:100px;
+}
+
+#search_hr{
+	margin-bottom: 0px;
+}

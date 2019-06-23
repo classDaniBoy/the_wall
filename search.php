@@ -16,9 +16,9 @@
 
 ?>
 
-<div class="main_column column" id="main_column">
+<div class="main_column column" id="main_column" style="padding: 44px">
 	<?php
-		if ($query="") {
+		if ($query=="") {
 			echo "Sin resultados";
 		}else{
 			
@@ -44,7 +44,7 @@
 			echo "no pudimos encontrar a". $type . "como :" .$query;
 		}else{
 
-			echo mysqli_num_rows($usersReturnedQuery) . "resultados:<br> <br>";
+			echo mysqli_num_rows($usersReturnedQuery) . "   resultados:<br> <br>";
 		}
 
 
@@ -61,7 +61,8 @@
 						</a>
 						<br>
 
-					</div>";		
+					</div>
+					<hr id = search_hr>";		
 			
 
 		}
