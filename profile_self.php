@@ -69,6 +69,7 @@
 		<div class="container_self column">
     <h3> <a href="#friendlist"> Ver tus amigos</a></h3>
       <h2>TUS MENSAJES</h2>
+      <?php if ($messages): ?>
          <?php foreach ($messages as $key => $message): ?>
   			<div class="row">
     			<div class="col-sm-12 strip">
@@ -132,6 +133,7 @@
     			</div>
   			</div>
         <?php endforeach; ?> 
+      <?php endif ?>
         <ul class="pagination">
       <?php if($page_no > 1){
         echo "<li><a href='?page_no=1'>First Page <br></a></li>";
@@ -159,6 +161,7 @@
     <br>
     <div class="container_self column">
     <h2>LISTADO DE AMIGOS</h2>
+        <?php if ($friends): ?>
          <?php foreach ($friends as $key => $friend): ?>
         <div class="row" id="friendlist">
           <div class="col-sm-12 strip">
@@ -175,6 +178,7 @@
           </div>
         </div>
         <?php endforeach; ?> 
+      <?php endif ?>
     </div>
     
     </div>

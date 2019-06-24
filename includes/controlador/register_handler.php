@@ -102,7 +102,7 @@ if(isset($_POST['register_button'])){
 	if(empty($error_array)) {
 		$query = mysqli_query($mysqli, "INSERT INTO `usuarios`(`apellido`, `nombre`, `email`, `nombreusuario`, `contrasenia`,`foto_contenido`,`foto_tipo`) VALUES ('$lname', '$fname', '$em','$uname', '$password','$imgData','$fileActualExt')");
 
-		array_push($error_array, "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>");
+		array_push($error_array, "<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>");
 
 		$_SESSION['reg_fname'] = "";
 		$_SESSION['reg_lname'] = "";

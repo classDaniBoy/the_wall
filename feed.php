@@ -65,6 +65,8 @@
   </div>
 
         <div class="status_post column">
+            
+  <?php if ($messages): ?>
     <?php foreach ($messages as $key => $message): ?>
             <div class="status_post_profile_pic">
                 <img src="mostrarImagen.php?id_imagen=<?php echo $message['usuarios_id'] ?>" width="50">
@@ -121,7 +123,9 @@
                 </form>
                 <?php endif ?>
             </div>
+            <br>
     <?php endforeach; ?>
+  <?php endif ?>
     <br>
     <br>
     <br>

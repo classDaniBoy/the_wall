@@ -13,8 +13,11 @@
 	<link rel="stylesheet" type="text/css" href="assets/css/footer_style.css">
 </head>
 <body>
-	<?php 
+	<?php
 		include 'BD.php';
+		if ($_SESSION['user_logged_id']== "") {
+			header("Location: index.php");
+		}
 		if (isset($_GET['page_no']) && $_GET['page_no']!="") {
     		$page_no = $_GET['page_no'];
     	} else {

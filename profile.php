@@ -75,6 +75,50 @@
               <?php echo $message['texto'] ?>
     			</div>
   			</div>
+        <?php 
+                    $message_id = $message['id'];
+                    $liked_query = "SELECT * FROM me_gusta WHERE usuarios_id = $user_id AND mensaje_id =$message_id";
+                    $liked_helper = $mysqli->query($liked_query);
+                    if (mysqli_num_rows($liked_helper) > 0) {
+                      $liked = true;
+                    }
+                    else{
+                      $liked = false;      
+                    }
+                 ?>
+                 <?php if ($liked): ?>
+                  <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="feed.php">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="remove_like" value="Ya no me gusta">
+                    <div class="like_value">
+                    <p><?php
+                        
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>  Likes</p>
+                    </div>
+                </form>  
+                <?php else: ?>
+                <form class="likear" action="feed.php" method="POST">
+                    <input type="hidden" name="page_from" value="feed.php">
+                    <input type="hidden" name="like_message_id" value="<?php echo $message['id'] ?>">
+                    <input type="hidden" name="like_user_id" value="<?php echo $_SESSION['user_logged_id'] ?>">
+                    <input type="submit" class="comment_like" name="add_like" value="Me gusta">
+                    <div class="like_value">
+                    <p><?php
+                        
+                        $likesquery = "SELECT * from me_gusta WHERE mensaje_id=$message_id";
+                        $likes = $mysqli->query($likesquery);
+                        $likes = mysqli_num_rows($likes);
+                        echo $likes;
+                     ?>  Likes</p>
+                    </div>
+                </form>
+                <?php endif ?>
       <?php endforeach; ?>
     </div>
 </div>

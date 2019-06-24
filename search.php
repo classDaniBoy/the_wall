@@ -1,6 +1,7 @@
 <?php
 	include ("includes/header.php");
-
+	include ("includes/controlador/friend_handler.php");
+	$user_id = $_SESSION['user_logged_id'];
 	if (isset($_GET['q'])) {
 		$query=$_GET['q'];
 
@@ -8,11 +9,6 @@
 		$query="";
 	}
 
-	if (isset($_GET['type'])) {
-		$type=$_GET['type'];
-	}else{
-		$type="name";
-	}
 
 ?>
 
@@ -42,7 +38,7 @@
 		}
 
 		if (mysqli_num_rows($usersReturnedQuery)==0) {
-			echo "no pudimos encontrar a". $type . "como :" .$query;
+			echo "no pudimos encontrar a " .$query;
 		}else{
 
 			echo mysqli_num_rows($usersReturnedQuery) . "   resultados:<br> <br>";
@@ -50,26 +46,44 @@
 
 
 
-		while ($row=mysqli_fetch_array($usersReturnedQuery)) {
-			
-			echo "<div class=search_result>
-					<div class=profile_pic style='float: left ;margin-right: 10px;'>
-						<img src=mostrarImagen.php?id_imagen=".$row['id']." style='width: 145px;'>
-						<a href='". $row['nombreusuario'] ."'></a>
-					</div>
-					
-						<a href='profile.php?friend_id=". $row['id']. "'>". $row['nombre'] ."". $row['apellido']. "
-							<p id='grey'>". $row['nombreusuario'] ."</p>
-						</a>
-						<br>
-
-					</div>
-					<hr id = search_hr>";		
-			
-
-		}
-
-
+		
 	?>
-
+	<?php foreach ($usersReturnedQuery as $key => $friend): ?>
+		<div class=search_result>
+		<div class=profile_pic style='float: left ;margin-right: 10px;'>
+			<img src="mostrarImagen.php?id_imagen=<?php echo $friend['id'] ?>" style="width: 145px;">
+			<a href="<?php echo $friend['nombreusuario'] ?>"></a>
+		</div>
+		
+			<a href="profile.php?friend_id= <?php echo $friend['id'] ?>"> <?php echo $friend['nombre'] ." ". $friend['apellido'] ?>
+				<p id='grey'> <?php echo $friend['nombreusuario'] ?></p>
+			</a>
+			<br>
+			<?php
+			 	$friend_id = $friend['id'];
+				$added_query = "SELECT * FROM siguiendo WHERE usuarios_id = $user_id AND usuarioseguido_id =$friend_id";
+			    $added_helper = $mysqli->query($added_query);
+			    if (mysqli_num_rows($added_helper) > 0) {
+			      $added = true;
+			    }
+			    else{
+			      $added = false;      
+			    }
+			 ?>
+			 <?php if ($added): ?>
+		      <form  name="friendRemovalForm" action="search.php" method="POST">
+		        <input type="hidden" name="page_from" value="search.php?q=<?php echo $_GET['q'] ?>">
+		        <input type="hidden" value="<?php echo $friend_id ?>" id="friend_id" name="friend_id">
+		        <button type="submit" name="remove_friend" class="btn danger btn-primary">Dejar de seguir</button>
+		      </form>
+		    <?php else: ?>
+		      <form  name="friendForm" action="search.php" method="POST">
+		        <input type="hidden" name="page_from" value="search.php?q=<?php echo $_GET['q'] ?>">
+		        <input type="hidden" value="<?php echo $friend_id ?>" id="friend_id" name="friend_id">
+		        <button type="submit" name="add_friend" class="btn register btn-primary">Añadir a mis amigos</button>
+		      </form>
+		    <?php endif ?>
+		</div>
+	<hr id = search_hr>
+	<?php endforeach ?>
 </div>

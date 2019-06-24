@@ -131,7 +131,7 @@
           <br>
           <?php 
             if (isset($error_array)) {
-            if(in_array("<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>", $error_array)) echo "<span style='color: #14C800;'>You're all set! Go ahead and login!</span><br>"; 
+            if(in_array("<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>", $error_array)) echo "<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>"; 
             }
           ?>
           <a href="#" id="signin" class="signin">Ya tenés una cuenta? Ingresá acá!</a>
