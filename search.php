@@ -18,7 +18,7 @@
 			echo "Sin resultados";
 		}else{
 			
-			$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE nombreusuario LIKE '$query%'");
+			$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE nombreusuario LIKE '$query%'AND id <> '$user_id'");
 			if(mysqli_num_rows($usersReturnedQuery)==0){
 				
 			
@@ -27,12 +27,12 @@
 				if (count($names)==3) {
 
 
-					$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[2]%')");
+					$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[2]%')AND id <> '$user_id'");
 				}else{
 					if (count($names)== 2) {
-						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[1]%')");
+						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[1]%')AND id <> '$user_id'");
 					}else
-						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[0]%')");
+						$usersReturnedQuery = mysqli_query($mysqli,"SELECT * FROM usuarios WHERE (nombre LIKE '$names[0]%' OR apellido LIKE '$names[0]%')AND id <> '$user_id'");
 			}
 		}
 		}
