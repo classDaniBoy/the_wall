@@ -60,29 +60,35 @@
 
 	  		var usuario = document.userDataForm.usuario.value;
 			var usuario_re = /(\w+)$/;
-	  		var usuario_val = usuario_re.test(usuario);      
-	        
-	        if(email_val === false) {
-	            alert( "Please provide a valid email adress" );
-	            document.logForm.log_email.focus() ;
-	            return false;
-	        }
-	        if( apellido_val === false) {
-	            alert( "Please provide a valid Last Name!" );
-	            document.userDataForm.apellido.focus() ;
-	            return false;
-	        }
-	        if( nombre_val === false) {
-	            alert( "Please provide a First Name!" );
-	            document.userDataForm.nombre.focus() ;
-	            return false;
-	        }
+	  		var usuario_val = usuario_re.test(usuario);
 
-	        if( usuario_val === false) {
-	            alert( "Please provide a valid Username!" );
-	            document.userDataForm.usuario.focus() ;
-	            return false;
-	        }
+
+	        if (email) {
+	        	if(email_val === false) {
+	            	alert( "Please provide a valid email adress" );
+	            	document.logForm.log_email.focus() ;
+	            	return false;
+	        }	}
+	        if (nombre) {
+	        	if( apellido_val === false) {
+	            	alert( "Please provide a valid Last Name!" );
+	            	document.userDataForm.apellido.focus() ;
+	            	return false;
+	        }	}
+
+	        if (apellido) {
+	        	if( nombre_val === false) {
+	            	alert( "Please provide a First Name!" );
+	            	document.userDataForm.nombre.focus() ;
+	            	return false;
+	        }	}
+
+	        if (usuarios) {
+	        	if( usuario_val === false) {
+	            	alert( "Please provide a valid Username!" );
+	            	document.userDataForm.usuario.focus() ;
+	            	return false;
+	        }	}
 
 	        return true;
       	}
