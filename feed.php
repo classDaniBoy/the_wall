@@ -75,7 +75,7 @@
                 <a href="profile.php"> <?php echo $message['nombreusuario'] ?> </a>
                 <br>
                 <?php if ($message['imagen_contenido'] !== ""): ?>
-                <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" />
+                <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" width="200px"/>
                 <?php endif ?>
                 <p> <?php echo $message['texto'] ?></p>
                 <?php 
