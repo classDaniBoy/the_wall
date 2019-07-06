@@ -1,7 +1,7 @@
 <?php  
 
 if(isset($_POST['login_button'])) {
-	
+	include '../../BD.php';
 	$email = filter_var($_POST['log_email']); 
 	
 	$_SESSION['log_email'] = $email; 
@@ -20,12 +20,14 @@ if(isset($_POST['login_button'])) {
 		$_SESSION['user_logged_last_name'] = $last_name;
 		$_SESSION['user_logged_id'] = $id;
 		$_SESSION['user_logged_email'] = $email;
-		header("Location: feed.php");
+		header("Location: http://localhost/the_wall/feed.php");
 		exit();
 	}
 	else {
-		$error_array = [];
-		array_push($error_array, "Email or password was incorrect<br>");
+		$_SESSION['error_array'] = [];
+		array_push($_SESSION['error_array'], "Email or password was incorrect<br>");
+		header("Location: http://localhost/the_wall/index.php");
+		exit();
 	}
 
 

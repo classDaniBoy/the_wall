@@ -10,8 +10,8 @@
 <body>
   <?php
     include 'BD.php';
-    include("includes/controlador/login_handler.php");
-    include("includes/controlador/register_handler.php");
+    //include("includes/controlador/login_handler.php");
+    //include("includes/controlador/register_handler.php");
 
     if(isset($_POST['register_button'])) {
         echo '
@@ -38,7 +38,7 @@
       <br>
       <div id="first">
 
-        <form name="logForm" action="index.php" method="POST" onsubmit = "return log_validate();">
+        <form name="logForm" action="includes/controlador/login_handler.php" method="POST" onsubmit = "return log_validate();">
           <input type="text" name="log_email" placeholder="Email" value="<?php 
                     if(isset($_SESSION['log_email'])) {
                         echo $_SESSION['log_email'];
@@ -48,8 +48,8 @@
 
           <input type="password" name="log_password" placeholder="Contraseña">
           <br>
-        <?php if (isset($error_array)) {
-            if(in_array("Email or password was incorrect<br>", $error_array)) echo  "Email or password was incorrect<br>"; 
+        <?php if (isset($_SESSION['error_array'])) {
+            if(in_array("Email or password was incorrect<br>", $_SESSION['error_array'])) echo  "Email or password was incorrect<br>"; 
         }
         ?>
 
@@ -63,14 +63,14 @@
 
       <div id="second">
 
-        <form enctype="multipart/form-data" name="regForm" action="index.php" onsubmit = "return reg_validate();" method="POST">
+        <form enctype="multipart/form-data" name="regForm" action="includes/controlador/register_handler.php" onsubmit = "return reg_validate();" method="POST">
           <input type="text" name="reg_fname" placeholder="Nombre" value="<?php if(isset($_SESSION['reg_fname'])) {
                         echo $_SESSION['reg_fname'];
                     }?>">
           <br>
           <?php
-            if (isset($error_array)) {
-            if(in_array("Your first name must be between 2 and 25 characters<br>", $error_array)) echo "Your first name must be between 2 and 25 characters<br>"; 
+            if (isset($_SESSION['error_array'])) {
+            if(in_array("Your first name must be between 2 and 25 characters<br>", $_SESSION['error_array'])) echo "Your first name must be between 2 and 25 characters<br>"; 
             }
            ?>
           <input type="text" name="reg_lname" placeholder="Apellido" value="<?php 
@@ -79,8 +79,8 @@
                     }?>">
           <br>
           <?php
-            if (isset($error_array)) {
-            if(in_array("Your first name must be between 2 and 25 characters<br>", $error_array)) echo "Your first name must be between 2 and 25 characters<br>"; 
+            if (isset($_SESSION['error_array'])) {
+            if(in_array("Your first name must be between 2 and 25 characters<br>", $_SESSION['error_array'])) echo "Your first name must be between 2 and 25 characters<br>"; 
             }
            ?>
           <input type="text" name="reg_uname" placeholder="Nombre de usuario" value="<?php 
@@ -90,8 +90,8 @@
                 ?>">
           <br>
           <?php
-            if (isset($error_array)) {
-            if(in_array("Username already in use<br>", $error_array)) echo "Username already in use<br>"; 
+            if (isset($_SESSION['error_array'])) {
+            if(in_array("Username already in use<br>", $_SESSION['error_array'])) echo "Username already in use<br>"; 
             }
            ?>
           <input type="email" name="reg_email" placeholder="Email" value="<?php 
@@ -107,10 +107,10 @@
                     ?>">
           <br>
           <?php 
-            if (isset($error_array)) {
-                if(in_array("Email already in use<br>", $error_array)) echo "Email already in use<br>"; 
-                    else if(in_array("Invalid email format<br>", $error_array)) echo "Invalid email format<br>";
-                    else if(in_array("Emails don't match<br>", $error_array)) echo "Emails don't match<br>"; 
+            if (isset($_SESSION['error_array'])) {
+                if(in_array("Email already in use<br>", $_SESSION['error_array'])) echo "Email already in use<br>"; 
+                    else if(in_array("Invalid email format<br>", $_SESSION['error_array'])) echo "Invalid email format<br>";
+                    else if(in_array("Emails don't match<br>", $_SESSION['error_array'])) echo "Emails don't match<br>"; 
             }
             ?>
           <input type="password" name="reg_password" placeholder="Password">
@@ -118,10 +118,10 @@
           <input type="password" name="reg_password2" placeholder="Confirm Password">
           <br>
           <?php 
-            if (isset($error_array)) {
-            if(in_array("Your passwords do not match<br>", $error_array)) echo "Your passwords do not match<br>"; 
-                    else if(in_array("Your password can only contain english characters or numbers<br>", $error_array)) echo "Your password can only contain english characters or numbers<br>";
-                    else if(in_array("Your password must be betwen 5 and 30 characters<br>", $error_array)) echo "Your password must be betwen 5 and 30 characters<br>"; 
+            if (isset($_SESSION['error_array'])) {
+            if(in_array("Your passwords do not match<br>", $_SESSION['error_array'])) echo "Your passwords do not match<br>"; 
+                    else if(in_array("Your password can only contain english characters or numbers<br>", $_SESSION['error_array'])) echo "Your password can only contain english characters or numbers<br>";
+                    else if(in_array("Your password must be betwen 5 and 30 characters<br>", $_SESSION['error_array'])) echo "Your password must be betwen 5 and 30 characters<br>"; 
                 }
             ?>
           <p>Seleccionar imagen de perfil</p>
@@ -130,8 +130,8 @@
           <input type="submit" name="register_button" value="Registrarse">
           <br>
           <?php 
-            if (isset($error_array)) {
-            if(in_array("<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>", $error_array)) echo "<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>"; 
+            if (isset($_SESSION['error_array'])) {
+            if(in_array("<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>", $_SESSION['error_array'])) echo "<span style='color: #14C800;'>TU CUENTA HA SIDO CREADA POR FAVOR INICIA SESION CON TUS CREDENCIALES HACIENDO CLICKA ABAJO!</span><br>"; 
             }
           ?>
           <a href="#" id="signin" class="signin">Ya tenés una cuenta? Ingresá acá!</a>

@@ -76,7 +76,7 @@
               <?php echo $_SESSION['user_logged_user_name'] ?><br>
       				<img class="comment" src="mostrarImagen.php?id_imagen=<?php echo $_SESSION['user_logged_id'] ?>" alt="profile image" />
       				<?php echo $message['texto'] ?><br>
-              <?php if ($message['imagen_contenido'] !== ""): ?>
+              <?php if ($message['imagen_contenido'] != ""): ?>
                 <img class="comment" src="mostrarImagenMensajes.php?id_imagen=<?php echo $message['id'] ?>" alt="profile image" />
               <?php endif ?>
               <a href="profile_self.php">

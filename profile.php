@@ -5,6 +5,10 @@
 
     $friend_id = $_GET['friend_id'];
     $user_id = $_SESSION['user_logged_id'];
+    if ($friend_id == $user_id) {
+      header("Location: http://localhost/the_wall/feed.php");
+      exit();
+    }
     $added_query = "SELECT * FROM siguiendo WHERE usuarios_id = $user_id AND usuarioseguido_id =$friend_id";
     $added_helper = $mysqli->query($added_query);
     if (mysqli_num_rows($added_helper) > 0) {
