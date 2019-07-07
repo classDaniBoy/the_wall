@@ -11,6 +11,7 @@ $password2 = "";
 $date = ""; 
 
 if(isset($_POST['register_button'])){
+	$_SESSION['register_attempt'] = true;
 	$_SESSION['error_array'] = array();
 
 	$fname = strip_tags($_POST['reg_fname']); 
