@@ -67,6 +67,7 @@
 
 
 	<div class="wrapper column">
+    <!-- Lo del parametro debe ser esto -->
 		<h1><?php echo $friend['nombreusuario']; ?></h1>
 		<div class="container column">
       <?php foreach ($messages as $key => $message): ?>

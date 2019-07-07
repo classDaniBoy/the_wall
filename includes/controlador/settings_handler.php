@@ -1,7 +1,8 @@
 <?php
 $error_array = array();
-
 if(isset($_POST['listo'])){
+	include '../../BD.php';
+
 
 	$id=$_SESSION['user_logged_id'];
 
@@ -30,7 +31,6 @@ if(isset($_POST['listo'])){
 			array_push($error_array, "Invalid email format<br>");
 		}
 
-
 	if(strlen($fname) > 25 || strlen($fname) < 2) {
 		array_push($error_array, "Your first name must be between 2 and 25 characters<br>");
 	}
@@ -39,7 +39,7 @@ if(isset($_POST['listo'])){
 		array_push($error_array,  "Your last name must be between 2 and 25 characters<br>");
 	}
 		$sql = "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname' WHERE id='$id'";
-			if (isset($_FILES['profile_pic'])) {
+			if (isset($_FILES['profile_pic']) && ($_FILES['profile_pic']['tmp_name'] != "")) {
 			$imgData = addslashes(file_get_contents($_FILES["profile_pic"]["tmp_name"]));
 			$fileName = $_FILES ['profile_pic']['name'];
 			$fileExt = explode('.', $fileName);
@@ -51,10 +51,9 @@ if(isset($_POST['listo'])){
 		$sql = "UPDATE `usuarios`SET`apellido`='$lname', `nombre`='$fname', `email`='$em', `nombreusuario`='$uname',`foto_contenido`='$imgData',`foto_tipo`='$fileActualExt' WHERE id='$id'";
 		}
 	if(empty($error_array)) {
-
 		mysqli_query($mysqli,$sql);
-		header("Location= settings.php?success");
-
 	}
+		header("Location: http://localhost/the_wall/settings.php");
+		exit();
 }
 ?>

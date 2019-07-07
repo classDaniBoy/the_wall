@@ -1,8 +1,7 @@
 <?php
 
-$passwordMessage="";
-
 if(isset($_POST['cambiar'])){
+	include '../../BD.php';
 
 	$id=$_SESSION['user_logged_id'];
 	$password = strip_tags($_POST['actual_pass']);
@@ -14,21 +13,22 @@ if(isset($_POST['cambiar'])){
 	if($check_pass_query == 1) {
 		if ($password2 == $password3) {
 			if (strlen($password2)<5) {
-				$passwordMessage="Contraseña demasiado corta";
+				$_SESSION['passwordMessage']="<span style='color: #FF0000;'> Contraseña demasiado corta</span><br>";
 			}else{
 				mysqli_query($mysqli, "UPDATE `usuarios` SET `contrasenia` = '$password2' WHERE `id`='$id'");
-				$passwordMessage="Contraseña cambiada";
+				$_SESSION['passwordMessage']="<span style='color: #14C800;'>Contraseña modificada exitosamente</span><br>";
 			}
 
 		}else{
-			$passwordMessage =" Las contraseñas no concuerdan";
+			$_SESSION['passwordMessage'] ="<span style='color: #FF0000;'> Las contraseñas no concuerdan</span><br>";
 		}
 	}
 	else{
-		$passwordMessage="Contraseña incorrecta";
+		$_SESSION['passwordMessage']="<span style='color: #FF0000;'> Contraseña incorrecta</span><br>";
 	}
 }
 
-header("Location= settings.php?success");
+header("Location: http://localhost/the_wall/settings.php");
+exit();
 
 ?>
